@@ -1,0 +1,36 @@
+language: scala
+
+scala:
+- 2.12.2
+- 2.11.11
+
+jdk:
+- oraclejdk8
+
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install
+
+env:
+  global:
+    JSENV=node
+
+script:
+  - sbt ++$TRAVIS_SCALA_VERSION testDev testProd
+
+deploy:
+  provider: script
+  script:
+  - /bin/bash "$TRAVIS_BUILD_DIR/.travis.credentials.sh" && sbt ++$TRAVIS_SCALA_VERSION publish
+  on:
+    tags: true
+
+env:
+  global:
+  # travis encrypt BINTRAY_USER=xxx
+  - secure: "HxtCJU3t01at/diEvMCOFnlImrWCsaNPAwGWiNx5AO2xR/BWJq2j588ouOzn5xISm2E6TKlMR94ocEMN+uL58FMZUIxhOkAhXyKEuJg+Nbf0jrsqCDh80tizuew+pwXjVoWzUkOVF7Qxfq4yTAVMNZoh74dfgbrxUGtEOFrOWZ7TVojuvf2gDUJpZYZHxvCD+1P1rpe7qP4lAYrpbq8E9k08N0bP7S8amwNYhIlOtwAvfnS2/LKyduyseDeMZCfGWfgKub9K5luzxcRBDRtVjIpmxKddwTVQuWucCSaJlgL1TyvG+uWmcR+dgak7/Tw2JP7DCImP2/ZQfcbxith3PtCn+J/5ZZSH8JwqyD25yXlmZbJEczqykNUoprkWYqc6ttCO8CMUKbBNFi+rgxo2fq+FpAxySqAR14NrV8EmxW0c72ZLCs7RExK9OxcVAyeezU5KOmbt4JXoDhE/iBSGtt1FPktMOLSYCT1zeFLXRgJIbA2T8J0YYWL/pC5PwdSmfin0HZ97ou7JcZMUcD0zaIEAIX/5/l8IX0W8aHLPh9TFve/nbI7kOzG0n0Cs5qbsTjkUfpw08LvQcF5c89Gc061T0YMZ7idile91K7sV1Uu49pHpLG/Mv8XTKZMsU0b2bHEH1R7DAxigO/Gm0AzPZD7qu2VfPJKgnm1RbptSn2g="
+  # travis encrypt BINTRAY_PASSWORD=xxx
+  - secure: "wMydb2RWFiSmKzMFKij5Ir5zDt2bERjHGcbIPvEpJNidiGsAO3z9YNmThlHzD4tgwK7BqvsneBZFhUk20kczAS+BMDxEzQ1Hp+cn2tppXWc3kDXCcEGfGTXxzRA/UQwu4AjBGjJT6ODOBVANFkL5GkxB8xWwpp0Q7k4B+QfmDi4Wv2YkioMVSHkV8Vmrx+JuM+mQj18OQUFLYa7FKmFQYeDevsOxvCUp4Xqf2F3FFJBWALgvggYoGdBhvJBw9g5PDJIbha/OZGxeDqTMBtjH84azdbDuMULxg17USHFcYnig3Qsdnv5blj3D6EyAWBmrckMiK1AQBbjsdDvfZqyQA45Pw8psxTTY7+2tuZpJXYROfUeoM9SPqC/RiCih5KqSjsSyxBDuNJQhrO2SCT7iYM7D0XWW7Stfb8msBNalP4mdPGouxUniUA/xXiPqfDy85JpSf6Sd3hODAiLJ0nX73dKgpKi7KUKWsFSbIWmkoQVXOdMJu+mz+4aKy+SuilFYPfBlaXbdBX50IRodtuxj49gkdGlDQtqCRPJx5g7i9eN5F9OLKNJZMIyl03yW4dM8Xep/LXRm3Y29M5RZUFmT3bwp9QN5sfGSkg30kPIKrCiwu3U0HLrtUDRBS6Dpuccn2gcxvplLuUR58kJEpB6xglSuVMHUL57bQXlCvsWUZZs="
+

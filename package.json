@@ -1,0 +1,16 @@
+{
+  "name": "sr--test",
+  "version": "0.1.0",
+  "description": "sri test",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "jest": "^20.0.4"
+  }
+}
