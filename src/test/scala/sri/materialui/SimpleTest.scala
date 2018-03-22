@@ -2,7 +2,7 @@ package sri.materialui
 
 class SimpleTest extends BaseTest {
 
-  test("simple", () => {
+  test("simple") {
     expect(true).toBeTruthy()
-  })
+  }
 }
