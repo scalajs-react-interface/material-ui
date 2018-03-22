@@ -3,17 +3,10 @@ package sri
 
 
 import sri.core._
-import sri.macros.{
-  FunctionObjectMacro,
-  exclude,
-  rename,
-  OptDefault,
-  OptionalParam
-}
+
 import sri.universal._
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.annotation.JSName
-import scala.scalajs.js.annotation.ScalaJSDefined
 import sri.web.vdom.DOMProps
 import org.scalajs.dom
 import sri.web.vdom.ReactEventAliases._

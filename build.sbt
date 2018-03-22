@@ -1,16 +1,14 @@
 name := "material-ui"
 
-//version := "2017.7.0-SNAPSHOT"
+//version := "2018.3.0-SNAPSHOT"
 
 enablePlugins(ScalaJSPlugin)
 
-val scala211 = "2.11.11"
-
-val scala212 = "2.12.2"
+val scala212 = "2.12.4"
 
 scalaVersion := scala212
 
-crossScalaVersions := Seq(scala211, scala212)
+crossScalaVersions := Seq(scala212)
 
 sources in doc in Compile := List()
 
@@ -23,9 +21,9 @@ scalacOptions ++= Seq(
 
 //Dependencies
 libraryDependencies ++= Seq(
-  "scalajs-react-interface" %%% "core" % "2017.7.9-RC" % Provided,
-  "scalajs-react-interface" %%% "universal" % "2017.7.9-RC" % Provided,
-  "scalajs-react-interface" %%% "vdom" % "2017.7.9-RC" % Provided
+  "scalajs-react-interface" %%% "core" % "2018.2.2-RC" % Provided,
+  "scalajs-react-interface" %%% "universal" % "2018.2.9-RC" % Provided,
+  "scalajs-react-interface" %%% "vdom" % "2018.2.2-RC" % Provided
 )
 
 //bintray
@@ -76,10 +74,12 @@ def runJest() = {
 
 resolvers += Resolver.bintrayRepo("scalajs-react-interface", "maven")
 resolvers += Resolver.bintrayRepo("scalajs-jest", "maven")
+resolvers += Resolver.bintrayRepo("scalajs-plus", "maven")
 
 libraryDependencies ++= Seq(
-  "org.scala-js" %%% "scalajs-dom" % "0.9.3" % Test,
-  "scalajs-jest" %%% "core" % "2017.7.9-beta" % Test
+  "org.scala-js" %%% "scalajs-dom" % "0.9.5" % Test,
+  "scalajs-jest" %%% "core" % "2018.2.2-RC" % Test
 )
 //scalaJSStage in Global := FastOptStage
 scalaJSStage in Global := FullOptStage
+
